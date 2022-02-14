@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona główna</title>
+  <link rel="stylesheet" th:href="@{/styles/header.css}">
+  <link rel="stylesheet" th:href="@{/styles/main.css}">
+</head>
+<body>
+<Section id="header">
+  <img class="logo" src="images/tlo.png" alt="Logo">
+  <ol>
+    <li>
+      <a th:href="@{|/|}">Strona główna</a>
+    </li>
+
+    <li><a th:href="@{|/all_projects|}">wykaz projektów</a>
+      <ul >
+        <li><a th:href="@{/add_type}">Dodaj rodzaj projektu</a></li>
+        <li><a th:href="@{|/add_status|}">Dodaj status projektu</a></li>
+        <li><a th:href="@{|/edit_type|}">Edytuj rodzaj projektu</a></li>
+        <li><a th:href="@{|/edit_status|}">Edytuj status projektu</a></li>
+        <li><a th:href="@{|/add_project|}">Dodaj projekt</a></li>
+        <li><a th:href="@{|/types_projects|}">Projekty wg. rodzaju</a></li>
+        <li><a th:href="@{|/status_projects|}">Projekty wg. statusu</a></li>
+        <li><a th:href="@{|/edit_project|}">Edytuj projekt szczegółowy</a></li>
+      </ul>
+    </li>
+
+    <li><a th:href="@{|/number_projects|}">Wyszukaj projekt wg numer</a>
+      <ul>
+        <li><a th:href="@{|/topic_projects|}">Wyszukaj projekt wg temat</a></li>
+        <li><a th:href="@{|/dates_projects|}">Wyszukaj projekty wg daty</a></li>
+        <li><a th:href="@{|/amounts_projects|}">Wyszukaj projekty wg kwoty</a></li>
+        <li><a th:href="@{|/statistics_projects|}">Statystyki projekty</a></li>
+        <li><a th:href="@{|#|}">Projekty graficzne wg rodzaj</a></li>
+        <li><a th:href="@{|#|}">projekty graficzne wg status</a></li>
+      </ul>
+    </li>
+  </ol>
+</Section>
+<br>
+<Section id="body">
+  <p>Strona główna aplikacji</p>
+</Section>
+
+<Section id="footer">
+  <p class="Footer_text">Wszelkie prawa zastrzeżone</p>
+</Section>
+</body>
+</html>

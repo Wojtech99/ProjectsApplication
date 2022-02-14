@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edytuj Status</title>
+    <link rel="stylesheet" th:href="@{/styles/header.css}">
+    <link rel="stylesheet" th:href="@{/styles/main.css}">
+</head>
+<body>
+<Section id="header">
+    <img class="logo" src="images/tlo.png" alt="Logo">
+    <ol>
+        <li>
+            <a th:href="@{|/|}">Strona główna</a>
+        </li>
+
+        <li><a th:href="@{|/all_projects|}">wykaz projektów</a>
+            <ul >
+                <li><a th:href="@{/add_type}">Dodaj rodzaj projektu</a></li>
+                <li><a th:href="@{|/add_status|}">Dodaj status projektu</a></li>
+                <li><a th:href="@{|/edit_type|}">Edytuj rodzaj projektu</a></li>
+                <li><a th:href="@{|/edit_status|}">Edytuj status projektu</a></li>
+                <li><a th:href="@{|/add_project|}">Dodaj projekt</a></li>
+                <li><a th:href="@{|/types_projects|}">Projekty wg. rodzaju</a></li>
+                <li><a th:href="@{|/status_projects|}">Projekty wg. statusu</a></li>
+                <li><a th:href="@{|/edit_project|}">Edytuj projekt szczegółowy</a></li>
+            </ul>
+        </li>
+
+        <li><a th:href="@{|/number_projects|}">Wyszukaj projekt wg numer</a>
+            <ul>
+                <li><a th:href="@{|/topic_projects|}">Wyszukaj projekt wg temat</a></li>
+                <li><a th:href="@{|/dates_projects|}">Wyszukaj projekty wg daty</a></li>
+                <li><a th:href="@{|/amounts_projects|}">Wyszukaj projekty wg kwoty</a></li>
+                <li><a th:href="@{|/statistics_projects|}">Statystyki projekty</a></li>
+                <li><a th:href="@{|#|}">Projekty graficzne wg rodzaj</a></li>
+                <li><a th:href="@{|#|}">projekty graficzne wg status</a></li>
+            </ul>
+        </li>
+    </ol>
+</Section>
+<br>
+<Section id="body">
+    <form method="post" action="/deleteStatus">
+        <div>
+            <label>
+                Status projektu:
+                <select name="statusName">
+                    <option value="0">Select Status To Delete</option>
+                    <option th:each="status: ${list}" th:value="${status.statusName}" th:text="${status.statusName}"></option>
+                </select>
+                <button type="submit">Usuń</button>
+            </label>
+        </div>
+    </form>
+    <form method="post" action="/updateStatus">
+        <div>
+            <label>
+                Status projektu:
+                <select name="id">
+                    <option value="0">Select Status To Update</option>
+                    <option th:each="status: ${list}" th:value="${status.id}" th:text="${status.statusName}"></option>
+                </select>
+                <a>Nowy status projektu:</a>
+                <input name="newProjectStatusName" type="text">
+                <button type="submit">Aktualizuj</button>
+            </label>
+        </div>
+
+    </form>
+    <br>
+    <table class="tableToShow">
+        <thead>
+        <tr>
+            <td class="tdToShow">Nazwa statusu projektu</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="status: ${list}" th:object="${status}">
+            <td class="tdToShow" th:text="*{statusName}"></td>
+        </tr>
+        </tbody>
+    </table>
+</Section>
+
+<Section id="footer">
+    <p class="Footer_text">Wszelkie prawa zastrzeżone</p>
+</Section>
+</body>
+</html>

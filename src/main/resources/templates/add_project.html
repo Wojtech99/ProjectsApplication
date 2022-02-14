@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj projekt</title>
+    <link rel="stylesheet" th:href="@{/styles/header.css}">
+    <link rel="stylesheet" th:href="@{/styles/main.css}">
+</head>
+<body>
+<Section id="header">
+    <img class="logo" src="images/tlo.png" alt="Logo">
+    <ol>
+        <li>
+            <a th:href="@{|/|}">Strona główna</a>
+        </li>
+
+        <li><a th:href="@{|/all_projects|}">wykaz projektów</a>
+            <ul >
+                <li><a th:href="@{/add_type}">Dodaj rodzaj projektu</a></li>
+                <li><a th:href="@{|/add_status|}">Dodaj status projektu</a></li>
+                <li><a th:href="@{|/edit_type|}">Edytuj rodzaj projektu</a></li>
+                <li><a th:href="@{|/edit_status|}">Edytuj status projektu</a></li>
+                <li><a th:href="@{|/add_project|}">Dodaj projekt</a></li>
+                <li><a th:href="@{|/types_projects|}">Projekty wg. rodzaju</a></li>
+                <li><a th:href="@{|/status_projects|}">Projekty wg. statusu</a></li>
+                <li><a th:href="@{|/edit_project|}">Edytuj projekt szczegółowy</a></li>
+            </ul>
+        </li>
+
+        <li><a th:href="@{|/number_projects|}">Wyszukaj projekt wg numer</a>
+            <ul>
+                <li><a th:href="@{|/topic_projects|}">Wyszukaj projekt wg temat</a></li>
+                <li><a th:href="@{|/dates_projects|}">Wyszukaj projekty wg daty</a></li>
+                <li><a th:href="@{|/amounts_projects|}">Wyszukaj projekty wg kwoty</a></li>
+                <li><a th:href="@{|/statistics_projects|}">Statystyki projekty</a></li>
+                <li><a th:href="@{|#|}">Projekty graficzne wg rodzaj</a></li>
+                <li><a th:href="@{|#|}">projekty graficzne wg status</a></li>
+            </ul>
+        </li>
+    </ol>
+</Section>
+<br>
+<Section id="body">
+    <form method="post" action="/addNewProject" th:object="${projectDto}">
+        <table>
+            <tr>
+                <td>rodzaj projektu:</td>
+                <td><select th:field="*{projectType}">
+                    <option value="0">Select type</option>
+                    <option th:each="type: ${listOfTypes}" th:value="${type.id}" th:text="${type.typeName}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>
+                status projektu:</td>
+                <td><select th:field="*{projectStatus}">
+                    <option value="0">Select status</option>
+                    <option th:each="status: ${listOfStatuses}" th:value="${status.id}" th:text="${status.statusName}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>nr projektu:</td>
+                <td><input th:field="*{projectNumber}" type="text"></td>
+            </tr>
+            <tr>
+                <td>temat projektu:</td>
+                <td><input th:field="*{topic}" type="text"></td>
+            </tr>
+            <tr>
+                <td>data rozpoczęcia:</td>
+                <td><input th:field="*{startProjectDate}" type="date"></td>
+            </tr>
+            <tr>
+                <td>data zakończenia:</td>
+                <td><input th:field="*{endProjectDate}" type="date"></td>
+            </tr>
+            <tr>
+                <td>kwota projektu:</td>
+                <td><input th:field="*{amount}" type="number" step=".01"></td>
+            </tr>
+            <tr>
+                <td>uwagi:</td>
+                <td><input th:field="*{comments}" type="text"></td>
+            </tr>
+        </table>
+        <button type="submit">Zapisz</button>
+    </form>
+</Section>
+
+<Section id="footer">
+    <p class="Footer_text">Wszelkie prawa zastrzeżone</p>
+</Section>
+</body>
+</html>
